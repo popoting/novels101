@@ -1,5 +1,6 @@
 class NovelsController < ApplicationController
   before_action :find_novel, only: [:show, :edit, :destroy, :update]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy, :create]
   def index
     @novels = Novel.all
   end
@@ -10,6 +11,7 @@ class NovelsController < ApplicationController
   
   def create
     @novel = Novel.new(novel_params)
+    @novel.user = current_user
     if @novel.save
       redirect_to @novel, notice: "Successfully Saved"
     else
@@ -42,6 +44,9 @@ class NovelsController < ApplicationController
   
   def find_novel
     @novel = Novel.find(params[:id])
+    if current_user != @novel.user
+      redirect_to root_path, alert: "You have no permission"
+    end
   end
   
   def novel_params
