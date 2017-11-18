@@ -12,11 +12,14 @@
         <a class="nav-link" href="#">最新发布</a>
       </li>
     </ul>
-    <form class="form-line my-2 my-lg-0" >
-      <%= search_form_for @search, url: search_novels_path, html: {method: :post, class: "navbar-form"} do |f| %>
-    <p>
+    <form class="form-inline" >
+      <div class="form-group">
+              <%= search_form_for @q, url: search_novels_path, html: {method: :post, class: "navbar-form"} do |f| %>
+      </div>
+
+    <p class="form-group mx-sm-3">
       <%= f.text_field :title_cont, class: "form-control" %>
-      <%= f.submit "Search", class: "btn btn-default" %>
+      <%= f.submit "Search", class: "btn btn-outline-success mx-2" %>
     </p>
   <% end %>
     </form>
