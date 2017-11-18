@@ -12,24 +12,28 @@
         <a class="nav-link" href="#">最新发布</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form class="form-line my-2 my-lg-0" >
+      <%= search_form_for @search, url: search_novels_path, html: {method: :post, class: "navbar-form"} do |f| %>
+    <p>
+      <%= f.text_field :title_cont, class: "form-control" %>
+      <%= f.submit "Search", class: "btn btn-default" %>
+    </p>
+  <% end %>
     </form>
-  
-  <% if !current_user %>
-    <li class="text-light"><%= link_to("注册", new_user_registration_path) %> </li>
-        <li class="text-light"><%= link_to("登录", new_user_session_path) %></li>
-        <% else %>
-          <li class="dropdown">
-         <a href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown">
-          Hi!, <%= current_user.email %>
-            <b class="caret"></b>
-                    </a>
-            <ul class="dropdown-menu">
-            <li class="dropdown-item"> <%= link_to("退出", destroy_user_session_path, method: :delete) %> </li>
-                    </ul>
-                  </li>
-                <% end %>
+      
+    <% if !current_user %>
+      <li><%= link_to("注册", new_user_registration_path) %> </li>
+      <li><%= link_to("登录", new_user_session_path) %></li>
+    <% else %>
+      <li class="dropdown">
+       <a href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown">
+            Hi!, <%= current_user.email %>
+        <b class="caret"></b>
+        </a>
+       <ul class="dropdown-menu">
+        <li class="dropdown-item"> <%= link_to("退出", destroy_user_session_path, method: :delete) %> </li>
+       </ul>
+      </li>
+    <% end %>
 
 </nav>

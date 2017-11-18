@@ -2,8 +2,15 @@ class NovelsController < ApplicationController
   before_action :find_novel, only: [:show, :edit, :destroy, :update]
   before_action :authenticate_user!, only: [:new, :edit, :destroy, :create]
   def index
-    @novels = Novel.all
-  end
+  @search = Novel.search(params[:q])
+  @novels = @search.result
+end
+
+ def search
+  index
+  render :index
+ end
+
   
   def new
     @novel = Novel.new
