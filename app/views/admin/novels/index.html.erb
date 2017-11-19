@@ -1,0 +1,32 @@
+<div class="col-md-12">
+  <div class="group">
+    <%= link_to("New Novel", new_admin_novel_path, class:"btn btn-outline-primary float-right") %>
+  </div>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">author</th>
+      <th scope="col">Creator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @novels.each do |novel| %>
+    <tr>
+      <td>#</td>
+      <td><%= link_to(novel.title, admin_novel_path(novel), class: "text-dark", style: "text-decoration: none;") %></td>
+      <td><%= novel.author %></td>
+      <td><%= novel.user.email %></td>
+      <td>
+        <% if current_user && current_user == novel.user %>
+        <%= link_to("Edit", edit_admin_novel_path(novel), class: "btn btn-outline-info") %>
+        <%= link_to("Delete", admin_novel_path(novel), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure?"}) %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+  
+</div>

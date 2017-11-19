@@ -5,4 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
          has_many :novels
          has_many :reviews, dependent: :destroy
+         
+ def admin?
+   is_admin
+ end
+
+ def super_admin?
+   is_super_admin
+ end
 end

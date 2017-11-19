@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :novels
+  end
   resources :reviews
   devise_for :users
   root "novels#index"
