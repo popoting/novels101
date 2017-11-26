@@ -59,6 +59,6 @@ end
   end
   
   def novel_params
-    params.require(:novel).permit(:title, :description, :author, :lead, :comment)
+    params.require(:novel).permit(:title, :description, :author, :lead, :comment, :tag_list)
   end
 end

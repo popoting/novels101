@@ -8,6 +8,7 @@
       <th scope="col">#</th>
       <th scope="col">Title</th>
       <th scope="col">author</th>
+      <th scope="col">Tags</th>
       <th scope="col">Creator</th>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
       <td>#</td>
       <td><%= link_to(novel.title, admin_novel_path(novel), class: "text-dark", style: "text-decoration: none;") %></td>
       <td><%= novel.author %></td>
+      <td><%= render novel.tags %></td>
       <td><%= novel.user.email %></td>
       <td>
         <% if current_user && current_user == novel.user %>

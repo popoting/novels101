@@ -17,7 +17,7 @@ layout "admin"
 
   def create
     @novel = Novel.new(novel_params)
-
+    @novel.user = current_user
     if @novel.save
       redirect_to admin_novels_path
     else
@@ -51,7 +51,7 @@ layout "admin"
   private
 
   def novel_params
-    params.require(:novel).permit(:title, :description, :author, :lead, :comment)
+    params.require(:novel).permit(:title, :description, :author, :lead, :comment, :tag_list)
   end
 end
 

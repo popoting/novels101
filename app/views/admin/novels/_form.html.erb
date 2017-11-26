@@ -2,6 +2,7 @@
   <div class="form-group">
     <%= f.input :title %>
     <%= f.input :description %>
+    <%= f.input :tag_list, value: f.object.tag_list.to_s %>
     <%= f.input :author %>
     <%= f.input :lead %>
   </div>

@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   match 'search' => 'novels#search', via: [:get, :post], as: :search
 end
   end
+  resources :tags, only: [:index, :show]
 end
